@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Wave28.Data.AccountModels
+namespace ClientRegistration.Data.AccountModels
 {
      public class LoginModel
     {

@@ -1,32 +1,66 @@
-﻿using Wave28.Data.AccountBusiness;
-using Wave28.Data.AccountModels;
-using Wave28.ViewModels.ViewModels;
+﻿using ClientRegistration.Data.AccountBusiness;
+using ClientRegistration.Data.AccountModels;
+using ClientRegistration.ViewModels.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Microsoft.Owin.Security;
+using ClientRegistration.BusinessLogic.Logic;
+using System;
+using System.Linq;
+using System.Web.Http.Description;
+using System.Net.Http;
+using System.Net;
 
-namespace Wave28Api.Controllers
+namespace ClientRegistration.Controllers
 {
-    public class ClientRegistration : ApiController
+    [RoutePrefix("api/BusinessAdminRegistration")]
+    public class BusinessAdminRegistrationController : ApiController
     {
         #region Initialisation
-       
+        BusAdminBusinessLogic _dbBusinessAdmin = new BusAdminBusinessLogic();
         #endregion
+
+        public BusinessAdminRegistrationController()
+        {}
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        [HttpGet]
+        public IHttpActionResult Get()
         {
-            return new string[] 
+            IList<RegisterViewModel> businessAdmin = null;
+            try
             {
-                "value1", "value2"
-            };
+                businessAdmin=_dbBusinessAdmin.GetAllBusinessAdmin().ToList();
+
+                if (businessAdmin.Count==0)
+                {
+                    return NotFound();
+                }
+                return Ok(businessAdmin);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex.InnerException;
+            }
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            RegisterViewModel businessAdmin = null;
+            try
+            {
+                businessAdmin = _dbBusinessAdmin.GetBusinessAdminById(id);
+                return Ok(businessAdmin);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex.InnerException;
+            }
         }
         // POST: RegisterUsers/Create
         private IAuthenticationManager AuthenticationManager
@@ -37,7 +71,9 @@ namespace Wave28Api.Controllers
             }
         }
 
-        public async Task<IHttpActionResult> Post(RegisterViewModel registerView)
+        [HttpPost]
+        [ResponseType(typeof(RegisterViewModel))]
+        public async Task<HttpResponseMessage> Post([FromBody]RegisterViewModel registerView)
         {
             try
             {
@@ -45,13 +81,11 @@ namespace Wave28Api.Controllers
                 var registerbusiness = new RegisterBusiness();
                 var role = registerView.Role;
 
-                if (!ModelState.IsValid)
-                    return BadRequest("Not a valid model");
                 //CODESC:Check if user Exist
                 if (registerbusiness.FindUser(registerView.userName, AuthenticationManager))
                 {
                     ModelState.AddModelError("", "User name already taken");
-                    return Ok(registerView);
+                    return Request.CreateResponse(registerView);
                 }
                 //CODESC:Check if user does'nt Exist else create a role for him/her
                 if (!roleBusiness.RoleExists(role))
@@ -68,19 +102,16 @@ namespace Wave28Api.Controllers
                 //CODESC:If The Result Passes Register User
                 if (result)
                 {
-                    registerView.Role = "BusinessAdmin";
-                    //_dbManagerBusiness.Insert(registerView);
+                    _dbBusinessAdmin.Insert(registerView);
                     registerbusiness.AddUserToRole(registerView.userName, role);
                 }
              
             }
-            catch (System.Exception e)
+            catch (Exception ex)
             {
-
-                throw e.InnerException;
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
-
-            return Ok();
+            return Request.CreateResponse(registerView);
         }
 
         // PUT api/<controller>/5

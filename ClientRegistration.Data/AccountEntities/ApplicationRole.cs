@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace Wave28.Data.AccountEntities
+namespace ClientRegistration.Data.AccountEntities
 {
     public class ApplicationRole : IdentityRole
     {

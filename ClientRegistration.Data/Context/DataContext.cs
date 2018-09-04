@@ -1,16 +1,12 @@
-﻿using Wave28.Data.AccountEntities;
-using Wave28.Data.AccountModels;
+﻿using ClientRegistration.Data.AccountEntities;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ClientRegistration.Data.Entities;
+using ClientRegistration.Data.AccountModels;
 
-namespace Wave28.Data.Context
+namespace ClientRegistration.Data.Context
 {
     public class DataContext : IdentityDbContext
     {
@@ -67,7 +63,9 @@ namespace Wave28.Data.Context
         #region  Database Objects
 
         public DbSet<LoginModel> LoginModel { get; set; }
-
+        public DbSet<BusinessAdmin> BusinessAdmin { get; set; }
+        public DbSet<Vendor> Vendor { get; set; }
+       
         #endregion
     }
 }

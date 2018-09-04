@@ -1,7 +1,7 @@
-﻿using Wave28.BusinessLogic.Interfaces;
-using Wave28.Data.Entities;
-using Wave28.Repository.Repository;
-using Wave28.ViewModels.ViewModels;
+﻿using ClientRegistration.BusinessLogic.Interfaces;
+using ClientRegistration.Data.Entities;
+using ClientRegistration.Repository.Repository;
+using ClientRegistration.ViewModels.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,11 +9,13 @@ namespace Wave28.BusinessLogic.Logic
 {
     public class RegisterBusinessLogic : IRegisterBusinessLogic
     {
-        private static Register ConvertProject(RegisterViewModel model)
+        private static Register ConvertToRegister(RegisterViewModel model)
         {
             var register = new Register
             {
-
+                Role = model.Role,
+                RegisterId=model.RegisterId,
+                IdNumber=model.IdNumber,
                 Email = model.Email,
                 userName = model.userName,
                 fullNames = model.fullNames,
@@ -21,20 +23,16 @@ namespace Wave28.BusinessLogic.Logic
                 PostalAddress = model.PostalAddress,
                 Password = model.Password,
                 ConfirmPassword = model.ConfirmPassword,
-                Role = model.Role
-
+                RegistrationDate = model.RegistrationDate,
+                
+                
             };
             return register;
         }
 
-        Register IRegisterBusinessLogic.ConvertProject(RegisterViewModel model)
-        {
-            return ConvertProject(model);
-        }
-
         public RegisterViewModel GetById(int id)
         {
-            using (var db = new RegisterRepositoryImplememantation())
+            using (var db = new RegisterRepository())
             {
                 var regUser = db.GetAll().ToList().Find(d => (d.RegisterId == id));
 
@@ -49,6 +47,7 @@ namespace Wave28.BusinessLogic.Logic
                     regVmodel.Password = regUser.Password;
                     regVmodel.ConfirmPassword = regUser.ConfirmPassword;
                     regVmodel.Role = regUser.Role;
+                    regVmodel.RegistrationDate = regUser.RegistrationDate;
 
                 }
                 return regVmodel;
@@ -58,16 +57,16 @@ namespace Wave28.BusinessLogic.Logic
 
         public void Insert(RegisterViewModel model)
         {
-            using (var db = new RegisterRepositoryImplememantation())
+            using (var db = new RegisterRepository())
             {
-                db.Insert(ConvertProject(model));
+                db.Insert(ConvertToRegister(model));
 
             }
         }
 
         public IEnumerable<RegisterViewModel> GetAllRegisteredUsers()
         {
-            using (var db = new RegisterRepositoryImplememantation())
+            using (var db = new RegisterRepository())
             {
                 return db.GetAll().Select(model => new RegisterViewModel
                 {
@@ -78,6 +77,7 @@ namespace Wave28.BusinessLogic.Logic
                     PostalAddress=model.PostalAddress,
                     Password = model.Password,
                     ConfirmPassword = model.ConfirmPassword,
+                    RegistrationDate=model.RegistrationDate,
                     Role = model.Role
 
                 });

@@ -1,20 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Wave28.Data.Entities
+namespace ClientRegistration.Data.Entities
 {
     public class Register
     {
+        [Key]
         public int RegisterId { get; set; }
 
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Display(Name = "RSA ID")]
+        [StringLength(13, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 13)]
+        public string IdNumber { get; set; }
 
         //Added Field
         [Required]
@@ -47,6 +48,8 @@ namespace Wave28.Data.Entities
 
         [Display(Name = "Role")]
         public string Role { get; set; }
+
+        public DateTime RegistrationDate { get; set; }
 
     }
 }

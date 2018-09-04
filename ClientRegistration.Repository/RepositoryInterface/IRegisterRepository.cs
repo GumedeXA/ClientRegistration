@@ -1,8 +1,8 @@
-﻿using Wave28.Data.Entities;
+﻿using ClientRegistration.Data.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace Wave28.Repository.RepositoryInterface
+namespace ClientRegistration.Repository.RepositoryInterface
 {
     public interface IRegisterRepository : IDisposable
     {

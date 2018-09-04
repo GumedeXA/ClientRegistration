@@ -1,17 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Wave28.ViewModels.ViewModels
+namespace ClientRegistration.ViewModels.ViewModels
 {
     public class RegisterViewModel
     {
-
-        public string RegisterId { get; set; }
+       
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int RegisterId { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "Email Address")]
         [RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", ErrorMessage = "Please provide a valid  email address.")]
         public string Email { get; set; }
+
+        [Display(Name = "RSA ID")]
+        //[StringLength(13, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 13)]
+        public string IdNumber { get; set; }
 
         //Added Field
         [Required]
@@ -46,6 +53,8 @@ namespace Wave28.ViewModels.ViewModels
 
         [Display(Name = "Role")]
         public string Role { get; set; }
+
+       public DateTime RegistrationDate { get; set; }
 
     }
 }

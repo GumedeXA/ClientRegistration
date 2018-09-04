@@ -1,22 +1,20 @@
-﻿using Wave28.Data.Context;
-using Wave28.Data.Entities;
-using Wave28.Data.GenericRepository;
+﻿using ClientRegistration.Data.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Wave28.Repository.RepositoryInterface;
+using ClientRegistration.Data.GenericRepository;
+using ClientRegistration.Repository.RepositoryInterface;
+using ClientRegistration.Data.Entities;
 
-namespace Wave28.Repository.Repository
+namespace ClientRegistration.Repository.Repository
 {
-    public class RegisterRepositoryImplememantation : IRegisterRepository, IDisposable
+    public class RegisterRepository : IRegisterRepository, IDisposable
     {
-
-
         private DataContext _dataContext;
         private readonly IRepository<Register> _registerRepository;
 
 
-        public RegisterRepositoryImplememantation()
+        public RegisterRepository()
         {
             _dataContext = new DataContext();
             _registerRepository = new RepositoryService<Register>(_dataContext);

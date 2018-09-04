@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wave28.Data.GenericRepository
+namespace ClientRegistration.Data.GenericRepository
 {
     public interface IRepository<TEntity> where TEntity : class
     {

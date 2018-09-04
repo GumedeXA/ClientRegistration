@@ -1,12 +1,12 @@
-﻿using Wave28.Data.AccountEntities;
-using Wave28.Data.AccountModels;
-using Wave28.Data.Context;
+﻿using ClientRegistration.Data.AccountEntities;
+using ClientRegistration.Data.AccountModels;
+using ClientRegistration.Data.Context;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using System.Threading.Tasks;
 
-namespace Wave28.Data.AccountBusiness
+namespace ClientRegistration.Data.AccountBusiness
 {
     public class LoginBusiness
     {

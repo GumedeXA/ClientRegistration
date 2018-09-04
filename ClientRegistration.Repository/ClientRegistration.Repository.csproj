@@ -54,8 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryInterface\IBusinessAdminRepository.cs" />
     <Compile Include="RepositoryInterface\IRegisterRepository.cs" />
-    <Compile Include="Repository\RegisterRepositoryImplementation.cs" />
+    <Compile Include="RepositoryInterface\IVendorRepository.cs" />
+    <Compile Include="Repository\BusinessAdminRepository.cs" />
+    <Compile Include="Repository\RegisterRepository.cs" />
+    <Compile Include="Repository\VendorRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -63,9 +67,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClientRegistration.Data\Wave28.Data.csproj">
+    <ProjectReference Include="..\ClientRegistration.Data\ClientRegistration.Data.csproj">
       <Project>{56891A6D-566D-4BAD-B674-A3AFA1D15571}</Project>
-      <Name>Wave28.Data</Name>
+      <Name>ClientRegistration.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

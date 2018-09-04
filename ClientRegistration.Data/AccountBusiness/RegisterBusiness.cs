@@ -1,16 +1,12 @@
-﻿using Wave28.Data.AccountEntities;
-using Wave28.Data.AccountModels;
-using Wave28.Data.Context;
+﻿using ClientRegistration.Data.Context;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using ClientRegistration.Data.AccountEntities;
+using ClientRegistration.Data.AccountModels;
 
-namespace Wave28.Data.AccountBusiness
+namespace ClientRegistration.Data.AccountBusiness
 {
     public class RegisterBusiness
     {

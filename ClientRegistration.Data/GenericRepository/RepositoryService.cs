@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 
-namespace Wave28.Data.GenericRepository
+namespace ClientRegistration.Data.GenericRepository
 {
     public class RepositoryService<TEntity> : IRepository<TEntity> where TEntity : class
     {

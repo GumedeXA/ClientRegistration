@@ -40,22 +40,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IBusAdminBusinessLogic.cs" />
     <Compile Include="Interfaces\IRegisterBusinessLogic.cs" />
+    <Compile Include="Interfaces\IVendorBusinessLogic.cs" />
+    <Compile Include="Logic\BusAdminBusinessLogic.cs" />
     <Compile Include="Logic\RegisterBusinessLogic.cs" />
+    <Compile Include="Logic\VendorBusinessLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClientRegistration.Data\Wave28.Data.csproj">
+    <ProjectReference Include="..\ClientRegistration.Data\ClientRegistration.Data.csproj">
       <Project>{56891A6D-566D-4BAD-B674-A3AFA1D15571}</Project>
-      <Name>Wave28.Data</Name>
+      <Name>ClientRegistration.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClientRegistration.Repository\Wave28.Repository.csproj">
+    <ProjectReference Include="..\ClientRegistration.Repository\ClientRegistration.Repository.csproj">
       <Project>{261E5F3E-29AD-44AF-AF5D-95A1AB94A01B}</Project>
-      <Name>Wave28.Repository</Name>
+      <Name>ClientRegistration.Repository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClientRegistration.ViewModels\Wave28.ViewModels.csproj">
+    <ProjectReference Include="..\ClientRegistration.ViewModels\ClientRegistration.ViewModels.csproj">
       <Project>{282C0B00-2B7F-49AB-8308-30362CA9A033}</Project>
-      <Name>Wave28.ViewModels</Name>
+      <Name>ClientRegistration.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
