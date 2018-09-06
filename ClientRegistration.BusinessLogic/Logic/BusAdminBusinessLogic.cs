@@ -15,14 +15,14 @@ namespace ClientRegistration.BusinessLogic.Logic
             var busAdmin = new BusinessAdmin
             {
                 IdNumber = model.IdNumber,
+                userName = model.userName,
                 Email = model.Email,
                 fullNames = model.fullNames,
-                Password = model.Password,
-                ConfirmPassword = model.ConfirmPassword,
                 phoneNumber = model.phoneNumber,
                 PostalAddress = model.PostalAddress,
+                Password = model.Password,
+                ConfirmPassword = model.ConfirmPassword,
                 Role = model.Role,
-                userName = model.userName,
                 RegistrationDate=model.RegistrationDate,
                 vendorId=model.vendorId,
             };

@@ -12,6 +12,7 @@ using Microsoft.Owin.Security;
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using System.Data.Entity.Validation;
 
 namespace ClientRegistration.Controllers.Api
 {
@@ -103,10 +104,17 @@ namespace ClientRegistration.Controllers.Api
                 //CODESC:If The Result Passes Register Admin and Vendor
                 if (result)
                 {
-                    _dbVendor.Insert(registerView);
-                    _dbBusinessAdmin.Insert(registerView);
-                    registerbusiness.AddUserToRole(registerView.userName, role);
-                    lclRespondMsg = "Saved Successfully";
+                    try
+                    {
+                        _dbVendor.Insert(registerView);
+                        _dbBusinessAdmin.Insert(registerView);
+                        registerbusiness.AddUserToRole(registerView.userName, role);
+                        lclRespondMsg = "Saved Successfully";
+                    }
+                    catch (DbEntityValidationException e)
+                    {
+                        throw e.InnerException;
+                    }
                 }
             }
             catch (Exception ex)
