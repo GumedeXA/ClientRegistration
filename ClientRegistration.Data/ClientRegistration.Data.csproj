@@ -71,6 +71,7 @@
     <Compile Include="AccountModels\RegisterModel.cs" />
     <Compile Include="Context\DataContext.cs" />
     <Compile Include="Entities\BusinessAdmin.cs" />
+    <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Register.cs" />
     <Compile Include="Entities\Vendor.cs" />
     <Compile Include="GenericRepository\IRepository.cs" />

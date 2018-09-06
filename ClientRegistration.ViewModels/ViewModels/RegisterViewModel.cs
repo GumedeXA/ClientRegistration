@@ -86,11 +86,9 @@ namespace ClientRegistration.ViewModels.ViewModels
         public string vendorType { get; set; }
         [Display(Name = "Other")]
         public string Other { get; set; }
-
         [Required]
         [Display(Name = "Vendor Postal Address")]
         public string VendorPostalAddress { get; set; }
-
         [Required]
         [DataType(DataType.MultilineText)]
         [Display(Name = "Business Description")]

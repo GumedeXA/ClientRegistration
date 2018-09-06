@@ -65,7 +65,8 @@ namespace ClientRegistration.Data.Context
         public DbSet<LoginModel> LoginModel { get; set; }
         public DbSet<BusinessAdmin> BusinessAdmin { get; set; }
         public DbSet<Vendor> Vendor { get; set; }
-       
+        public DbSet<Customer> Customer { get; set; }
+
         #endregion
     }
 }

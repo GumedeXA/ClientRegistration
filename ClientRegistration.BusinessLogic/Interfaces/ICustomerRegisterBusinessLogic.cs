@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ClientRegistration.BusinessLogic.Interfaces
 {
-    public interface IRegisterBusinessLogic
+    public interface ICustomerRegisterBusinessLogic
     {
     
         RegisterViewModel GetById(int id);

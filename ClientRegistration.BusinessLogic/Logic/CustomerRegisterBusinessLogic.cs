@@ -7,14 +7,13 @@ using System.Linq;
 
 namespace ClientRegistration.BusinessLogic.Logic
 {
-    public class RegisterBusinessLogic : IRegisterBusinessLogic
+    public class CustomerRegisterBusinessLogic : ICustomerRegisterBusinessLogic
     {
-        private static Register ConvertToRegister(RegisterViewModel model)
+        private static Customer ConvertToRegister(RegisterViewModel model)
         {
-            var register = new Register
+            var registercust = new Customer
             {
                 Role = model.Role,
-                RegisterId=model.RegisterId,
                 IdNumber=model.IdNumber,
                 Email = model.Email,
                 userName = model.userName,
@@ -25,17 +24,15 @@ namespace ClientRegistration.BusinessLogic.Logic
                 ConfirmPassword = model.ConfirmPassword,
                 RegistrationDate = model.RegistrationDate,
                 
-                
-                
             };
-            return register;
+            return registercust;
         }
 
         public RegisterViewModel GetById(int id)
         {
-            using (var db = new RegisterRepository())
+            using (var db = new CustomerRegisterRepository())
             {
-                var regUser = db.GetAll().ToList().Find(d => (d.RegisterId == id));
+                var regUser = db.GetAll().ToList().Find(d => (d.CustId == id));
 
                 var regVmodel = new RegisterViewModel();
                 {
@@ -58,7 +55,7 @@ namespace ClientRegistration.BusinessLogic.Logic
 
         public void Insert(RegisterViewModel model)
         {
-            using (var db = new RegisterRepository())
+            using (var db = new CustomerRegisterRepository())
             {
                 db.Insert(ConvertToRegister(model));
 
@@ -67,7 +64,7 @@ namespace ClientRegistration.BusinessLogic.Logic
 
         public IEnumerable<RegisterViewModel> GetAllRegisteredUsers()
         {
-            using (var db = new RegisterRepository())
+            using (var db = new CustomerRegisterRepository())
             {
                 return db.GetAll().Select(model => new RegisterViewModel
                 {

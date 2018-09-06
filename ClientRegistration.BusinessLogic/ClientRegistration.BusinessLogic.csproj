@@ -54,10 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IBusAdminBusinessLogic.cs" />
-    <Compile Include="Interfaces\IRegisterBusinessLogic.cs" />
+    <Compile Include="Interfaces\ICustomerRegisterBusinessLogic.cs" />
     <Compile Include="Interfaces\IVendorBusinessLogic.cs" />
     <Compile Include="Logic\BusAdminBusinessLogic.cs" />
-    <Compile Include="Logic\RegisterBusinessLogic.cs" />
+    <Compile Include="Logic\CustomerRegisterBusinessLogic.cs" />
     <Compile Include="Logic\VendorBusinessLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

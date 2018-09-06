@@ -8,46 +8,46 @@ using ClientRegistration.Data.Entities;
 
 namespace ClientRegistration.Repository.Repository
 {
-    public class RegisterRepository : IRegisterRepository, IDisposable
+    public class CustomerRegisterRepository : ICustomerRegisterRepository, IDisposable
     {
         private DataContext _dataContext;
-        private readonly IRepository<Register> _registerRepository;
+        private readonly IRepository<Customer> _registercustRepository;
 
 
-        public RegisterRepository()
+        public CustomerRegisterRepository()
         {
             _dataContext = new DataContext();
-            _registerRepository = new RepositoryService<Register>(_dataContext);
+            _registercustRepository = new RepositoryService<Customer>(_dataContext);
         }
 
-        public void Delete(Register model)
+        public void Delete(Customer model)
         {
-            _registerRepository.Delete(model);
+            _registercustRepository.Delete(model);
         }
 
-        public IEnumerable<Register> Find(Func<Register, bool> predicate)
+        public IEnumerable<Customer> Find(Func<Customer, bool> predicate)
         {
-            return _registerRepository.Find(predicate).ToList();
+            return _registercustRepository.Find(predicate).ToList();
         }
 
-        public List<Register> GetAll()
+        public List<Customer> GetAll()
         {
-            return _registerRepository.GetAll().ToList();
+            return _registercustRepository.GetAll().ToList();
         }
 
-        public Register GetById(int id)
+        public Customer GetById(int id)
         {
-            return _registerRepository.GetById(id);
+            return _registercustRepository.GetById(id);
         }
 
-        public void Insert(Register model)
+        public void Insert(Customer model)
         {
-            _registerRepository.Insert(model);
+            _registercustRepository.Insert(model);
         }
 
-        public void Update(Register model)
+        public void Update(Customer model)
         {
-            _registerRepository.Update(model);
+            _registercustRepository.Update(model);
         }
 
 
