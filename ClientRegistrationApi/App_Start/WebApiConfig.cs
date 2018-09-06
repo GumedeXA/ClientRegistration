@@ -8,8 +8,12 @@ namespace ClientRegistrationApi
         {
 
             //Converting all data calls to Json Format
-            config.Formatters.JsonFormatter.SupportedMediaTypes
-               .Add(new MediaTypeHeaderValue("text/html"));
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Clear();
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("multipart/form-data"));
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
+
+           
             // Web API routes
             config.MapHttpAttributeRoutes();
 

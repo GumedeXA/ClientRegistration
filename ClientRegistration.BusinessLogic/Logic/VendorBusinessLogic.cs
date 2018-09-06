@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ClientRegistration.BusinessLogic.Interfaces;
 using ClientRegistration.Data.Entities;
 using ClientRegistration.ViewModels.ViewModels;
@@ -10,22 +9,24 @@ namespace ClientRegistration.BusinessLogic.Logic
 {
     public class VendorBusinessLogic : IVendorBusinessLogic
     {
-        public static Vendor ConvertToVendor(VendorViewModel model)
+        public static Vendor ConvertToVendor(RegisterViewModel model)
         {
             var vendor = new Vendor
             {
-                vendorId = model.vendorId,
+                vendorId = model.RegisterId,
                 VendorEmail = model.VendorEmail,
                 RegistrationDate = model.RegistrationDate,
                 TelephoneNumber = model.TelephoneNumber,
-                PostalAddress = model.PostalAddress,
+                VendorPostalAddress = model.VendorPostalAddress,
                 VendorRegNo = model.VendorRegNo,
-                VendorName = model.VendorName
+                VendorName = model.VendorName,
+                Other=model.Other
+                
             };
             return vendor;
         }
 
-        public void Insert(VendorViewModel model)
+        public void Insert(RegisterViewModel model)
         {
             using (var db = new VendorRepository())
             {
@@ -33,7 +34,7 @@ namespace ClientRegistration.BusinessLogic.Logic
             }
         }
 
-        public void Delete(VendorViewModel model)
+        public void Delete(RegisterViewModel model)
         {
             using (var db=new VendorRepository())
             {
@@ -51,10 +52,9 @@ namespace ClientRegistration.BusinessLogic.Logic
                     VendorEmail = model.VendorEmail,
                     RegistrationDate = model.RegistrationDate,
                     TelephoneNumber = model.TelephoneNumber,
-                    PostalAddress = model.PostalAddress,
+                    VendorPostalAddress = model.VendorPostalAddress,
                     VendorRegNo = model.VendorRegNo,
-                    VendorName = model.VendorName
-
+                    VendorName = model.VendorName,
                 }).Where(x => x.BusAdminId.Equals(BusinessAdminId));
             }
         }
@@ -71,7 +71,7 @@ namespace ClientRegistration.BusinessLogic.Logic
                     vendorview.VendorEmail = vendordbRes.VendorEmail;
                     vendorview.RegistrationDate = vendordbRes.RegistrationDate;
                     vendorview.TelephoneNumber = vendordbRes.TelephoneNumber;
-                    vendorview.PostalAddress = vendordbRes.PostalAddress;
+                    vendorview.VendorPostalAddress = vendordbRes.VendorPostalAddress;
                     vendorview.VendorRegNo = vendordbRes.VendorRegNo;
                     vendorview.VendorName = vendordbRes.VendorName;
                 }
@@ -80,7 +80,7 @@ namespace ClientRegistration.BusinessLogic.Logic
             }
         }
 
-        public void Update(VendorViewModel model)
+        public void Update(RegisterViewModel model)
         {
             using (var db=new VendorRepository())
             {

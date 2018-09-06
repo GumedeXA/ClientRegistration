@@ -11,13 +11,16 @@ namespace ClientRegistration.ViewModels.ViewModels
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RegisterId { get; set; }
 
+        /// <summary>
+        /// Business Admin Reg details
+        /// </summary>
         [Required]
         [Display(Name = "Email Address")]
         [RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", ErrorMessage = "Please provide a valid  email address.")]
         public string Email { get; set; }
 
         [Display(Name = "RSA ID")]
-        //[StringLength(13, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 13)]
+        [StringLength(13, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 13)]
         public string IdNumber { get; set; }
 
         //Added Field
@@ -35,6 +38,7 @@ namespace ClientRegistration.ViewModels.ViewModels
         
         [Required]
         [Display(Name = "User Name")]
+        //[UserNameExistance]
         public string userName { get; set; }
 
         [Display(Name = "Postal Address")]
@@ -55,6 +59,42 @@ namespace ClientRegistration.ViewModels.ViewModels
         public string Role { get; set; }
 
        public DateTime RegistrationDate { get; set; }
+
+        /// <summary>
+        /// Vendor details
+        /// </summary>
+        /// 
+        public int vendorId { get; set; }
+        [Required]
+        [Display(Name = "Registration Number")]
+        public string VendorRegNo { get; set; }
+        [Required]
+        [Display(Name = "Vendor Name")]
+        public string VendorName { get; set; }
+        [Required]
+        [Display(Name = "Email Address")]
+        public string VendorEmail { get; set; }
+        [Required]
+        [Display(Name = "Telephone Number")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entered telephone format is not valid.")]
+        public string TelephoneNumber { get; set; }
+        [Required]
+        [Display(Name = "Business Ownership")]
+        public string vendorOwnerShip { get; set; }
+        [Required]
+        [Display(Name = "Business Type")]
+        public string vendorType { get; set; }
+        [Display(Name = "Other")]
+        public string Other { get; set; }
+
+        [Required]
+        [Display(Name = "Vendor Postal Address")]
+        public string VendorPostalAddress { get; set; }
+
+        [Required]
+        [DataType(DataType.MultilineText)]
+        [Display(Name = "Business Description")]
+        public string vendorDescription { get; set; }
 
     }
 }

@@ -75,9 +75,9 @@
     <Compile Include="Entities\Vendor.cs" />
     <Compile Include="GenericRepository\IRepository.cs" />
     <Compile Include="GenericRepository\RepositoryService.cs" />
-    <Compile Include="Migrations\201809031158109_Wave28 migrations.cs" />
-    <Compile Include="Migrations\201809031158109_Wave28 migrations.Designer.cs">
-      <DependentUpon>201809031158109_Wave28 migrations.cs</DependentUpon>
+    <Compile Include="Migrations\201809061216149_Wave migrations.cs" />
+    <Compile Include="Migrations\201809061216149_Wave migrations.Designer.cs">
+      <DependentUpon>201809061216149_Wave migrations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,8 +87,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809031158109_Wave28 migrations.resx">
-      <DependentUpon>201809031158109_Wave28 migrations.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809061216149_Wave migrations.resx">
+      <DependentUpon>201809061216149_Wave migrations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

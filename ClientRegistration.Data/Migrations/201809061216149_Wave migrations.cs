@@ -3,7 +3,7 @@ namespace ClientRegistration.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Wave28migrations : DbMigration
+    public partial class Wavemigrations : DbMigration
     {
         public override void Up()
         {
@@ -22,8 +22,25 @@ namespace ClientRegistration.Data.Migrations
                         ConfirmPassword = c.String(),
                         Role = c.String(),
                         RegistrationDate = c.DateTime(nullable: false),
+                        vendorId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.BusAdminId);
+                .PrimaryKey(t => t.BusAdminId)
+                .ForeignKey("dbo.Vendor", t => t.vendorId)
+                .Index(t => t.vendorId);
+            
+            CreateTable(
+                "dbo.Vendor",
+                c => new
+                    {
+                        vendorId = c.Int(nullable: false, identity: true),
+                        VendorRegNo = c.String(),
+                        VendorName = c.String(),
+                        VendorPostalAddress = c.String(),
+                        VendorEmail = c.String(),
+                        TelephoneNumber = c.String(),
+                        RegistrationDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.vendorId);
             
             CreateTable(
                 "dbo.LoginModel",
@@ -107,46 +124,29 @@ namespace ClientRegistration.Data.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
                 .Index(t => t.UserId);
             
-            CreateTable(
-                "dbo.Vendor",
-                c => new
-                    {
-                        vendorId = c.Int(nullable: false, identity: true),
-                        VendorRegNo = c.String(),
-                        VendorName = c.String(),
-                        PostalAddress = c.String(),
-                        VendorEmail = c.String(),
-                        TelephoneNumber = c.String(),
-                        RegistrationDate = c.DateTime(nullable: false),
-                        BusAdminId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.vendorId)
-                .ForeignKey("dbo.BusinessAdmin", t => t.BusAdminId)
-                .Index(t => t.BusAdminId);
-            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Vendor", "BusAdminId", "dbo.BusinessAdmin");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropIndex("dbo.Vendor", new[] { "BusAdminId" });
+            DropForeignKey("dbo.BusinessAdmin", "vendorId", "dbo.Vendor");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropTable("dbo.Vendor");
+            DropIndex("dbo.BusinessAdmin", new[] { "vendorId" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.LoginModel");
+            DropTable("dbo.Vendor");
             DropTable("dbo.BusinessAdmin");
         }
     }

@@ -15,7 +15,6 @@ namespace ClientRegistration.BusinessLogic.Logic
             var busAdmin = new BusinessAdmin
             {
                 IdNumber = model.IdNumber,
-                BusAdminId=model.RegisterId,
                 Email = model.Email,
                 fullNames = model.fullNames,
                 Password = model.Password,
@@ -24,7 +23,8 @@ namespace ClientRegistration.BusinessLogic.Logic
                 PostalAddress = model.PostalAddress,
                 Role = model.Role,
                 userName = model.userName,
-                RegistrationDate=model.RegistrationDate
+                RegistrationDate=model.RegistrationDate,
+                vendorId=model.vendorId,
             };
             return busAdmin;
         }
@@ -45,7 +45,8 @@ namespace ClientRegistration.BusinessLogic.Logic
                     Role = model.Role,
                     ConfirmPassword = model.ConfirmPassword,
                     RegistrationDate=model.RegistrationDate,
-                    userName=model.userName
+                    userName=model.userName,
+                    vendorId=model.vendorId
                 });
             }
         }

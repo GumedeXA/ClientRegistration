@@ -5,7 +5,7 @@ using ClientRegistration.ViewModels.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Wave28.BusinessLogic.Logic
+namespace ClientRegistration.BusinessLogic.Logic
 {
     public class RegisterBusinessLogic : IRegisterBusinessLogic
     {
@@ -24,6 +24,7 @@ namespace Wave28.BusinessLogic.Logic
                 Password = model.Password,
                 ConfirmPassword = model.ConfirmPassword,
                 RegistrationDate = model.RegistrationDate,
+                
                 
                 
             };

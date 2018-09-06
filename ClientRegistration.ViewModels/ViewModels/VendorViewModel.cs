@@ -16,7 +16,7 @@ namespace ClientRegistration.ViewModels.ViewModels
         public string VendorName { get; set; }
         [Required]
         [Display(Name = "Postal Address")]
-        public string PostalAddress { get; set; }
+        public string VendorPostalAddress { get; set; }
         [Required]
         [Display(Name = "Email Address")]
         public string VendorEmail { get; set; }
@@ -24,6 +24,10 @@ namespace ClientRegistration.ViewModels.ViewModels
         [Display(Name = "Telephone Number")]
         public string TelephoneNumber { get; set; }
         public DateTime RegistrationDate { get; set; }
+
+        [Display(Name = "Other")]
+        public string Other { get; set; }
+
 
         //Referential Integrity
         public int BusAdminId { get; set; }

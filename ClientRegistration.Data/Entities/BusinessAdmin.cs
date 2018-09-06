@@ -1,11 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ClientRegistration.Data.Entities
 {
     public class BusinessAdmin
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BusAdminId { get; set; }
         [Required]
         [EmailAddress]
@@ -49,5 +51,10 @@ namespace ClientRegistration.Data.Entities
         public string Role { get; set; }
 
         public DateTime RegistrationDate { get; set; }
+
+        //Referential Integrity
+        public int vendorId { get; set; }
+        public virtual Vendor Vendor { get; set; }
+
     }
 }

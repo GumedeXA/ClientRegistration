@@ -7,10 +7,10 @@ namespace ClientRegistration.BusinessLogic.Interfaces
     public interface IVendorBusinessLogic
     {
       
-        void Update(VendorViewModel model);
-        void Insert(VendorViewModel model);
+        void Update(RegisterViewModel model);
+        void Insert(RegisterViewModel model);
         VendorViewModel GetById(int VendorId);
         IEnumerable<VendorViewModel> GetAllVendorsByBusinessAdmin(string BusinessAdminId);
-        void Delete(VendorViewModel model);
+        void Delete(RegisterViewModel model);
     }
 }

@@ -1,31 +1,32 @@
 ﻿using ClientRegistration.Data.AccountBusiness;
 using ClientRegistration.Data.AccountModels;
 using ClientRegistration.ViewModels.ViewModels;
+using ClientRegistration.ViewModels.Validation_Messages;
+
+using ClientRegistration.BusinessLogic.Logic;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Microsoft.Owin.Security;
-using ClientRegistration.BusinessLogic.Logic;
 using System;
 using System.Linq;
-using System.Web.Http.Description;
-using System.Net.Http;
-using System.Net;
+using System.Web.Mvc;
 
-namespace ClientRegistration.Controllers
+namespace ClientRegistration.Controllers.Api
 {
     [RoutePrefix("api/BusinessAdminRegistration")]
     public class BusinessAdminRegistrationController : ApiController
     {
         #region Initialisation
         BusAdminBusinessLogic _dbBusinessAdmin = new BusAdminBusinessLogic();
+        VendorBusinessLogic _dbVendor = new VendorBusinessLogic();
         #endregion
 
         public BusinessAdminRegistrationController()
         {}
         // GET api/<controller>
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public IHttpActionResult Get()
         {
             IList<RegisterViewModel> businessAdmin = null;
@@ -41,13 +42,12 @@ namespace ClientRegistration.Controllers
             }
             catch (Exception ex)
             {
-
                 throw ex.InnerException;
             }
         }
 
         // GET api/<controller>/5
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public IHttpActionResult Get(int id)
         {
             RegisterViewModel businessAdmin = null;
@@ -71,47 +71,49 @@ namespace ClientRegistration.Controllers
             }
         }
 
-        [HttpPost]
-        [ResponseType(typeof(RegisterViewModel))]
-        public async Task<HttpResponseMessage> Post([FromBody]RegisterViewModel registerView)
+        [System.Web.Http.HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IHttpActionResult> Post([FromBody]RegisterViewModel registerView)
         {
+            string lclRespondMsg = ValidationMessages.RespondMsg;
             try
             {
                 var roleBusiness = new RoleBusiness();
                 var registerbusiness = new RegisterBusiness();
                 var role = registerView.Role;
-
+               
                 //CODESC:Check if user Exist
                 if (registerbusiness.FindUser(registerView.userName, AuthenticationManager))
                 {
                     ModelState.AddModelError("", "User name already taken");
-                    return Request.CreateResponse(registerView);
+                    return Ok(ValidationMessages.UserNameTaken);
                 }
                 //CODESC:Check if user does'nt Exist else create a role for him/her
                 if (!roleBusiness.RoleExists(role))
                 {
                     roleBusiness.CreateRole(role);
                 }
-                //CODESC:Than Register the user
+                //CODESC:Than check if user exist
                 var result = await registerbusiness.RegisterUser(new RegisterModel
                 {
-                    UserName = registerView.Email,
+                    UserName = registerView.userName,
                     Password = registerView.Password
                 }, AuthenticationManager);
 
-                //CODESC:If The Result Passes Register User
+                //CODESC:If The Result Passes Register Admin and Vendor
                 if (result)
                 {
+                    _dbVendor.Insert(registerView);
                     _dbBusinessAdmin.Insert(registerView);
                     registerbusiness.AddUserToRole(registerView.userName, role);
+                    lclRespondMsg = "Saved Successfully";
                 }
-             
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+                throw  ex.InnerException;
             }
-            return Request.CreateResponse(registerView);
+            return Ok(lclRespondMsg);
         }
 
         // PUT api/<controller>/5
