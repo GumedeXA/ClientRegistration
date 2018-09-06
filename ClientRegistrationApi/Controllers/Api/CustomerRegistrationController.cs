@@ -12,6 +12,7 @@ using ClientRegistration.BusinessLogic.Logic;
 
 namespace ClientRegistrationApi.Controllers.Api
 {
+    [RoutePrefix("api/CustomerRegistration")]
     public class CustomerRegistrationController : ApiController
     {
         #region Initialisation
