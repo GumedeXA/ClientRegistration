@@ -5,9 +5,9 @@ namespace ClientRegistration.BusinessLogic.Interfaces
 {
     public interface ICustomerRegisterBusinessLogic
     {
-    
-        RegisterViewModel GetById(int id);
-        void Insert(RegisterViewModel model);
-        IEnumerable<RegisterViewModel> GetAllRegisteredUsers();
+
+        CustomerViewModel GetById(int id);
+        void Insert(CustomerViewModel model);
+        IEnumerable<CustomerViewModel> GetAllRegisteredUsers();
     }
 }

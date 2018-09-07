@@ -3,6 +3,8 @@ using System.Web.Http;
 using System.Data.Entity.Validation;
 using Microsoft.Owin.Security;
 using System.Web;
+using System.Web.Mvc;
+using System.Threading.Tasks;
 
 using ClientRegistration.ViewModels.ViewModels;
 using ClientRegistration.ViewModels.Validation_Messages;
@@ -30,19 +32,19 @@ namespace ClientRegistrationApi.Controllers.Api
                 return HttpContext.Current.GetOwinContext().Authentication;
             }
         }
-        [HttpPost]
-        [System.Web.Mvc.ValidateAntiForgeryToken]
-        public async System.Threading.Tasks.Task<IHttpActionResult> Post([FromBody]RegisterViewModel registerView)
+        [System.Web.Mvc.HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IHttpActionResult> Post([FromBody]CustomerViewModel customerView)
         {
             string lclRespondMsg = ValidationMessages.RespondMsg;
             try
             {
                 var roleBusiness = new RoleBusiness();
                 var registerbusiness = new RegisterBusiness();
-                var role = registerView.Role;
+                var role = customerView.Role;
 
                 //CODESC:Check if user Exist
-                if (registerbusiness.FindUser(registerView.userName, AuthenticationManager))
+                if (registerbusiness.FindUser(customerView.userName, AuthenticationManager))
                 {
                     ModelState.AddModelError("", "User name already taken");
                     return Ok(ValidationMessages.UserNameTaken);
@@ -55,8 +57,8 @@ namespace ClientRegistrationApi.Controllers.Api
                 //CODESC:Than check if user exist
                 var result = await registerbusiness.RegisterUser(new RegisterModel
                 {
-                    UserName = registerView.userName,
-                    Password = registerView.Password
+                    UserName = customerView.userName,
+                    Password = customerView.Password
                 }, AuthenticationManager);
 
                 //CODESC:If The Result Passes Register Admin and Vendor
@@ -64,8 +66,8 @@ namespace ClientRegistrationApi.Controllers.Api
                 {
                     try
                     {
-                        _dbCustomerlogic.Insert(registerView);
-                        registerbusiness.AddUserToRole(registerView.userName, role);
+                        _dbCustomerlogic.Insert(customerView);
+                        registerbusiness.AddUserToRole(customerView.userName, role);
                         lclRespondMsg = "Saved Successfully";
                     }
                     catch (DbEntityValidationException e)

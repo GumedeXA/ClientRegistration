@@ -9,7 +9,7 @@ namespace ClientRegistration.BusinessLogic.Logic
 {
     public class CustomerRegisterBusinessLogic : ICustomerRegisterBusinessLogic
     {
-        private static Customer ConvertToRegister(RegisterViewModel model)
+        private static Customer ConvertToRegister(CustomerViewModel model)
         {
             var registercust = new Customer
             {
@@ -28,13 +28,13 @@ namespace ClientRegistration.BusinessLogic.Logic
             return registercust;
         }
 
-        public RegisterViewModel GetById(int id)
+        public CustomerViewModel GetById(int id)
         {
             using (var db = new CustomerRegisterRepository())
             {
                 var regUser = db.GetAll().ToList().Find(d => (d.CustId == id));
 
-                var regVmodel = new RegisterViewModel();
+                var regVmodel = new CustomerViewModel();
                 {
 
                     regVmodel.Email = regUser.Email;
@@ -53,7 +53,7 @@ namespace ClientRegistration.BusinessLogic.Logic
             }
         }
 
-        public void Insert(RegisterViewModel model)
+        public void Insert(CustomerViewModel model)
         {
             using (var db = new CustomerRegisterRepository())
             {
@@ -62,11 +62,11 @@ namespace ClientRegistration.BusinessLogic.Logic
             }
         }
 
-        public IEnumerable<RegisterViewModel> GetAllRegisteredUsers()
+        public IEnumerable<CustomerViewModel> GetAllRegisteredUsers()
         {
             using (var db = new CustomerRegisterRepository())
             {
-                return db.GetAll().Select(model => new RegisterViewModel
+                return db.GetAll().Select(model => new CustomerViewModel
                 {
                     Email = model.Email,
                     userName = model.userName,
