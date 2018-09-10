@@ -13,14 +13,14 @@ namespace ClientRegistration.BusinessLogic.Logic
         {
             var vendor = new Vendor
             {
-                vendorId = model.RegisterId,
+                vendorId = model.Id,
                 VendorEmail = model.VendorEmail,
                 RegistrationDate = model.RegistrationDate,
                 TelephoneNumber = model.TelephoneNumber,
                 VendorPostalAddress = model.VendorPostalAddress,
                 VendorRegNo = model.VendorRegNo,
                 VendorName = model.VendorName,
-                Other=model.Other
+                Other=model.Other,   
                 
             };
             return vendor;

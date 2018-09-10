@@ -8,7 +8,7 @@ namespace ClientRegistration.Data.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int RegisterId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [EmailAddress]

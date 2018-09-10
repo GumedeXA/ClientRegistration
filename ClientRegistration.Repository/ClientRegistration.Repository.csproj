@@ -56,9 +56,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryInterface\IBusinessAdminRepository.cs" />
     <Compile Include="RepositoryInterface\ICustomerRegisterRepository.cs" />
+    <Compile Include="RepositoryInterface\IProductRepository.cs" />
     <Compile Include="RepositoryInterface\IVendorRepository.cs" />
     <Compile Include="Repository\BusinessAdminRepository.cs" />
     <Compile Include="Repository\CustomerRegisterRepository.cs" />
+    <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\VendorRepository.cs" />
   </ItemGroup>
   <ItemGroup />

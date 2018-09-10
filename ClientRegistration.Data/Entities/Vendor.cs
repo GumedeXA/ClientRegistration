@@ -9,12 +9,18 @@ namespace ClientRegistration.Data.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int vendorId { get; set; }
+        [Required]
         public string VendorRegNo { get; set; }
+        [Required]
         public string VendorName { get; set; }
+        [Required]
         public string VendorPostalAddress { get; set; }
+        [Required]
         public string VendorEmail { get; set; }
+        [Required]
         public string TelephoneNumber { get; set; }
         public string Other { get; set; }
+        [Required]
         public DateTime RegistrationDate { get; set; }
     }
 }

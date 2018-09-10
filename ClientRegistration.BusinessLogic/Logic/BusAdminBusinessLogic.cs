@@ -24,7 +24,8 @@ namespace ClientRegistration.BusinessLogic.Logic
                 ConfirmPassword = model.ConfirmPassword,
                 Role = model.Role,
                 RegistrationDate=model.RegistrationDate,
-                vendorId=model.vendorId,
+                vendorId=model.Id,
+                BusAdminId=model.Id
             };
             return busAdmin;
         }
@@ -36,7 +37,7 @@ namespace ClientRegistration.BusinessLogic.Logic
                 return db.GetAll().Select(model => new RegisterViewModel
                 {
                     IdNumber = model.IdNumber,
-                    RegisterId=model.BusAdminId,
+                    Id=model.BusAdminId,
                     Email = model.Email,
                     fullNames = model.fullNames,
                     phoneNumber = model.phoneNumber,
@@ -46,7 +47,7 @@ namespace ClientRegistration.BusinessLogic.Logic
                     ConfirmPassword = model.ConfirmPassword,
                     RegistrationDate=model.RegistrationDate,
                     userName=model.userName,
-                    vendorId=model.vendorId
+                 
                 });
             }
         }
@@ -58,7 +59,7 @@ namespace ClientRegistration.BusinessLogic.Logic
 
         public RegisterViewModel GetBusinessAdminById(int businessAdminId)
         {
-            return GetAllBusinessAdmin().FirstOrDefault(x => x.RegisterId.Equals(businessAdminId));
+            return GetAllBusinessAdmin().FirstOrDefault(x => x.Id.Equals(businessAdminId));
         }
         public void Insert(RegisterViewModel model)
         {

@@ -1,10 +1,10 @@
-﻿using ClientRegistration.Data.Entities;
-using ClientRegistration.Repository.RepositoryInterface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using ClientRegistration.Data.Context;
 using ClientRegistration.Data.GenericRepository;
+using ClientRegistration.Data.Entities;
+using ClientRegistration.Repository.RepositoryInterface;
 
 namespace ClientRegistration.Repository.Repository
 {

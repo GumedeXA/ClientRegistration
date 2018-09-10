@@ -13,6 +13,7 @@ namespace ClientRegistration.Data.Entities
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+        [Required]
         [Display(Name = "RSA ID")]
         [StringLength(13, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 13)]
         public string IdNumber { get; set; }
@@ -33,6 +34,7 @@ namespace ClientRegistration.Data.Entities
         [DataType(DataType.PhoneNumber)]
         public string phoneNumber { get; set; }
 
+        [Required]
         public string PostalAddress { get; set; }
 
         [Required]
@@ -41,14 +43,17 @@ namespace ClientRegistration.Data.Entities
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        [Required]
         [Display(Name = "Role")]
         public string Role { get; set; }
 
+        [Required]
         public DateTime RegistrationDate { get; set; }
     }
 }

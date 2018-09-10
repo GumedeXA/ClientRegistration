@@ -7,9 +7,10 @@ namespace ClientRegistration.ViewModels.ViewModels
     public class RegisterViewModel
     {
        
-        [Key]
+        
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int RegisterId { get; set; }
+        [Key]
+        public int Id { get; set; }
 
         /// <summary>
         /// Business Admin Reg details
@@ -20,6 +21,7 @@ namespace ClientRegistration.ViewModels.ViewModels
         public string Email { get; set; }
 
         [Display(Name = "RSA ID")]
+        [Required]
         [StringLength(13, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 13)]
         public string IdNumber { get; set; }
 
@@ -42,6 +44,7 @@ namespace ClientRegistration.ViewModels.ViewModels
         public string userName { get; set; }
 
         [Display(Name = "Postal Address")]
+        [DataType(DataType.MultilineText)]
         public string PostalAddress { get; set; }
 
         [Required]
@@ -64,15 +67,17 @@ namespace ClientRegistration.ViewModels.ViewModels
         /// Vendor details
         /// </summary>
         /// 
-        public int vendorId { get; set; }
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //public int vendorId { get; set; }
         [Required]
         [Display(Name = "Registration Number")]
         public string VendorRegNo { get; set; }
         [Required]
-        [Display(Name = "Vendor Name")]
+        [Display(Name = "Company Name")]
         public string VendorName { get; set; }
         [Required]
-        [Display(Name = "Email Address")]
+        [Display(Name = "Company Email Address")]
         public string VendorEmail { get; set; }
         [Required]
         [Display(Name = "Telephone Number")]
@@ -87,7 +92,8 @@ namespace ClientRegistration.ViewModels.ViewModels
         [Display(Name = "Other")]
         public string Other { get; set; }
         [Required]
-        [Display(Name = "Vendor Postal Address")]
+        [Display(Name = "Company Postal Address")]
+        [DataType(DataType.MultilineText)]
         public string VendorPostalAddress { get; set; }
         [Required]
         [DataType(DataType.MultilineText)]

@@ -7,13 +7,13 @@ namespace ClientRegistration.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class Wavemigrations : IMigrationMetadata
+    public sealed partial class Wave26migrations : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Wavemigrations));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Wave26migrations));
         
         string IMigrationMetadata.Id
         {
-            get { return "201809061216149_Wave migrations"; }
+            get { return "201809101332417_Wave26 migrations"; }
         }
         
         string IMigrationMetadata.Source

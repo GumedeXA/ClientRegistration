@@ -66,7 +66,14 @@ namespace ClientRegistration.Data.Context
         public DbSet<BusinessAdmin> BusinessAdmin { get; set; }
         public DbSet<Vendor> Vendor { get; set; }
         public DbSet<Customer> Customer { get; set; }
-
+        public DbSet<VendorProduct> VendorProduct { get; set; }
+        public DbSet<ProductType> ProductType { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<ProductOrder> ProductOrder { get; set; }
+        public DbSet<Review> Review { get; set; }
+        public DbSet<CustomerReview> CustomerReview { get; set; }
+        public DbSet<Order> Order { get; set; }
         #endregion
     }
 }

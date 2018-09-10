@@ -27,7 +27,7 @@ namespace ClientRegistrationApi.Controllers.Api
         [Route("LogInUser")]
         public async Task<IHttpActionResult> Post([FromBody]LoginModel lgmodel)
         {
-            string lclRespondMsg = ValidationMessages.RespondMsg;
+            string lclRespondMsg = "";
             try
             {
                 var loginbusiness = new LoginBusiness();
@@ -36,7 +36,18 @@ namespace ClientRegistrationApi.Controllers.Api
                 var result = await loginbusiness.LogUserIn(lgmodel, AuthenticationManager);
                 if (result)
                 {
-                    lclRespondMsg = "Login Successfully";
+                    if (regbusines.UserInRole(lgmodel.UserName, "BusinessAdmin"))
+                    {
+                        lclRespondMsg = "BusinessAdmin";
+                    }
+                    else if (regbusines.UserInRole(lgmodel.UserName, "Customer"))
+                    {
+                        lclRespondMsg = "Customer";
+                    }
+                    else
+                    {
+                        lclRespondMsg = "Unknown User";
+                    }
                 }
             }
             catch (System.Exception ex)
@@ -44,7 +55,7 @@ namespace ClientRegistrationApi.Controllers.Api
 
                 throw ex.InnerException;
             }
-            
+
             return Ok(lclRespondMsg);
         }
         [System.Web.Mvc.HttpPost]

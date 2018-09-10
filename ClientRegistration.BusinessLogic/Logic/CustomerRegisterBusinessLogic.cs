@@ -24,6 +24,7 @@ namespace ClientRegistration.BusinessLogic.Logic
                 ConfirmPassword = model.ConfirmPassword,
                 RegistrationDate = model.RegistrationDate,
                 
+                
             };
             return registercust;
         }

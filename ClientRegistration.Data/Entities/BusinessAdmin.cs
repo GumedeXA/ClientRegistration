@@ -42,14 +42,16 @@ namespace ClientRegistration.Data.Entities
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        [Required]
         [Display(Name = "Role")]
         public string Role { get; set; }
-
+        [Required]
         public DateTime RegistrationDate { get; set; }
 
         //Referential Integrity
